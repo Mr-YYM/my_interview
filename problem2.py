@@ -2,6 +2,7 @@
 写一个函数将 ipv4 地址字符串 (仅包含数字，点) 转化成 32 位整数，要求输出合法地址的 32 位整型结果。
 """
 
+# 将十进制的整数转换成字符串形式的二进制数
 def decimal_to_binary(decimal_num: int) -> str:
     binary_num = ''
     while decimal_num > 0:
@@ -14,10 +15,10 @@ def decimal_to_binary(decimal_num: int) -> str:
 
 
 def ipv4_to_int(address: str) -> int:
-    four_nums = map(int, address.split('.'))  # 提取出IP中的4个数
-    four_nums_binary = map(decimal_to_binary, four_nums)  # 全部转换成二进制表达
-    four_nums_binary_8bit = [(8-len(num))*'0' + num for num in four_nums_binary]  # 给不满8位的那些数前补充足够的0
-    num_8bit = ''.join(four_nums_binary_8bit)  # 四个二进制数结合在一起
+    four_nums = map(int, address.split('.'))  # 提取出IP中的4个数 [192,168,31,1]
+    four_nums_binary = map(decimal_to_binary, four_nums)  # 全部转换成二进制表达 [11000000,10101000,11111,1]
+    four_nums_binary_8bit = [(8-len(num))*'0' + num for num in four_nums_binary]  # 给不满8位的那些数前补充足够的0 [11000000,10101000,00011111,00000001]
+    num_8bit = ''.join(four_nums_binary_8bit)  # 四个二进制数结合在一起 '11000000101010000001111100000001'
 
     result = 0
     for i in range(32):
