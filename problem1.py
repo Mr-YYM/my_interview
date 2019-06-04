@@ -27,3 +27,4 @@ if __name__ == "__main__":
     result = find_dup([4, 3, 2, 7, 8, 2, 3, 1, 2])
     assert result == [2, 3] or result == [3, 2]
     print("OK")
+

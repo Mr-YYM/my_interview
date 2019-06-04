@@ -14,10 +14,19 @@ def decimal_to_binary(decimal_num: int) -> str:
 
 
 def ipv4_to_int(address: str) -> int:
-    four_nums = map(int, address.split('.'))
-    four_nums_binary = list(map(decimal_to_binary, four_nums))
-    four_nums_binary_8bit = [(8-len(num))*'0'+num for num in four_nums_binary]
-    xxx = ''.join(four_nums_binary_8bit)
+    four_nums = map(int, address.split('.'))  # 提取出IP中的4个数
+    four_nums_binary = map(decimal_to_binary, four_nums)  # 全部转换成二进制表达
+    four_nums_binary_8bit = [(8-len(num))*'0' + num for num in four_nums_binary]  # 给不满8位的那些数前补充足够的0
+    num_8bit = ''.join(four_nums_binary_8bit)  # 四个二进制数结合在一起
+
+    result = 0
+    for i in range(32):
+        if num_8bit[i] == '1':
+            result += 2**(31-i)
+        elif num_8bit[i] == '0':
+            continue
+    
+    return result
 
 
 # 不要修改下面的部分
@@ -26,3 +35,4 @@ if __name__ == "__main__":
     assert ipv4_to_int("192.168.0.0") == 3232235520
     assert ipv4_to_int("255.255.255.255") == 4294967295
     print("OK")
+
