@@ -8,11 +8,16 @@ def decimal_to_binary(decimal_num: int) -> str:
         r = decimal_num % 2
         decimal_num = decimal_num // 2
         binary_num = str(r) + binary_num
+    if binary_num == '':
+        return '0'
     return binary_num
 
 
 def ipv4_to_int(address: str) -> int:
-    pass  # 在这里完成你的代码
+    four_nums = map(int, address.split('.'))
+    four_nums_binary = list(map(decimal_to_binary, four_nums))
+    four_nums_binary_8bit = [(8-len(num))*'0'+num for num in four_nums_binary]
+    xxx = ''.join(four_nums_binary_8bit)
 
 
 # 不要修改下面的部分
