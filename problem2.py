@@ -2,8 +2,13 @@
 写一个函数将 ipv4 地址字符串 (仅包含数字，点) 转化成 32 位整数，要求输出合法地址的 32 位整型结果。
 """
 
-def decimal_to_binary():
-
+def decimal_to_binary(decimal_num: int) -> str:
+    binary_num = ''
+    while decimal_num > 0:
+        r = decimal_num % 2
+        decimal_num = decimal_num // 2
+        binary_num = str(r) + binary_num
+    return binary_num
 
 
 def ipv4_to_int(address: str) -> int:
